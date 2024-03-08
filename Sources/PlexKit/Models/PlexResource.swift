@@ -9,12 +9,14 @@
 import Foundation
 
 @dynamicMemberLookup
-public struct PlexResource: Codable {
+public struct PlexResource: Codable, Identifiable, Hashable {
+    public let id: UUID // Add an id property to conform to Identifiable
     private let model: PlexResourceModel
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         self.model = try container.decode(PlexResourceModel.self)
+        self.id = UUID() // Generate a unique UUID for each PlexResource instance
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -35,6 +37,14 @@ public struct PlexResource: Codable {
         return Set(provides.split(separator: ",")
             .map(String.init)
             .compactMap(Capability.init(rawValue:)))
+    }
+
+    public static func ==(lhs: PlexResource, rhs: PlexResource) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 
     public enum Capability: String {
