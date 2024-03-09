@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct PlexLibrary: Codable {
+public struct PlexLibrary: Codable, Identifiable {
     public let key: String
     public let uuid: String
     public let type: PlexMediaType
@@ -26,6 +26,8 @@ public struct PlexLibrary: Codable {
     public let createdAt: Date?
     public let scannedAt: Date?
     private let Location: [Location]?
+
+    public var id: String { uuid }
 
     public var locations: [Location]? {
         // swiftformat:disable:next redundantSelf
