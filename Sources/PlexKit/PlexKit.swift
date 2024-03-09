@@ -114,6 +114,22 @@ public final class Plex {
             completion: completion
         )
     }
+    
+    public func request<Request: PlexResourceRequest>(
+        _ request: Request,
+        from url: URL,
+        token: String? = nil
+    ) async throws -> Request.Response {
+        let urlRequest = try request.asURLRequest(from: url, using: token)
+
+        let (data, response) = try await session.data(for: urlRequest)
+        guard let httpResponse = response as? HTTPURLResponse,
+              Constants.acceptableStatusCodes.contains(httpResponse.statusCode) else {
+            throw PlexError.networkError(urlRequest.url!, .unacceptableStatusCode((response as? HTTPURLResponse)?.statusCode ?? -1))
+        }
+
+        return try Request.response(from: data)
+    }
 }
 
 // MARK: - Client Info.
