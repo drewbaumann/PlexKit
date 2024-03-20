@@ -80,7 +80,6 @@ public struct PlexMediaItem: PlexMediaItemType {
     private let Director: [Tag]?
     private let Writer: [Tag]?
     private let Role: [Tag]?
-    public let OnDeck: [OnDeckMetadata]?
 
     // Playlist.
     public let smart: Bool?
@@ -147,10 +146,6 @@ public struct PlexMediaItem: PlexMediaItemType {
         public var streams: [Stream] {
             Stream ?? []
         }
-    }
-    
-    public struct OnDeckMetadata: Codable, Hashable {
-        public let Metadata: PlexMediaItem
     }
 
     /// Represents a video, audio, subtitle or lyric stream.
