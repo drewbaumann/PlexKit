@@ -148,6 +148,10 @@ public struct PlexMediaItem: PlexMediaItemType {
             Stream ?? []
         }
     }
+    
+    public struct OnDeckMetadata: Codable, Hashable {
+        public let Metadata: PlexMediaItem
+    }
 
     /// Represents a video, audio, subtitle or lyric stream.
     public struct Stream: Codable, Hashable {
@@ -212,10 +216,6 @@ public struct PlexMediaItem: PlexMediaItemType {
                     self = .unknown(rawValue)
                 }
             }
-        }
-        
-        public struct OnDeckMetadata: Codable, Hashable {
-            public let Metadata: PlexMediaItem
         }
     }
 }
