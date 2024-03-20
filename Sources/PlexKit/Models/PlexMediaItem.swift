@@ -80,6 +80,7 @@ public struct PlexMediaItem: PlexMediaItemType {
     private let Director: [Tag]?
     private let Writer: [Tag]?
     private let Role: [Tag]?
+    public let OnDeck: [OnDeckMetadata]?
 
     // Playlist.
     public let smart: Bool?
@@ -211,6 +212,10 @@ public struct PlexMediaItem: PlexMediaItemType {
                     self = .unknown(rawValue)
                 }
             }
+        }
+        
+        public struct OnDeckMetadata: Codable, Hashable {
+            public let Metadata: PlexMediaItem
         }
     }
 }
