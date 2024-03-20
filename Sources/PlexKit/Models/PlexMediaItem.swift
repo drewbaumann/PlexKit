@@ -88,7 +88,10 @@ public struct PlexMediaItem: PlexMediaItemType {
 
     public struct Tag: Codable, Hashable {
         public let id: Int?
+        public let filter: String?
         public let tag: String
+        public let tagKey: String?
+        public let thumb: String?
     }
 
     public struct Media: Codable, Hashable {
