@@ -92,6 +92,7 @@ public struct PlexMediaItem: PlexMediaItemType {
         public let tag: String
         public let tagKey: String?
         public let thumb: String?
+        public let role: String?
     }
 
     public struct Media: Codable, Hashable {
