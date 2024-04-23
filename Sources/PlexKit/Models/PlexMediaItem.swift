@@ -59,6 +59,7 @@ public struct PlexMediaItem: PlexMediaItemType {
     public let year: Int?
     public let originallyAvailableAt: String?
     public let studio: String?
+    public let editionTitle: String?
     public let tagline: String?
     public let contentRating: String?
     public let chapterSource: String?
