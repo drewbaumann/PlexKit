@@ -115,6 +115,7 @@ public final class Plex {
         )
     }
     
+    @available(macOS 12.0, *)
     public func request<Request: PlexResourceRequest>(
         _ request: Request,
         from url: URL,

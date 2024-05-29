@@ -81,6 +81,7 @@ public struct PlexMediaItem: PlexMediaItemType {
     private let Director: [Tag]?
     private let Writer: [Tag]?
     private let Role: [Tag]?
+    private let Marker: [Marker]?
 
     // Playlist.
     public let smart: Bool?
@@ -94,6 +95,19 @@ public struct PlexMediaItem: PlexMediaItemType {
         public let tagKey: String?
         public let thumb: String?
         public let role: String?
+    }
+    
+    public struct Marker: Codable, Hashable {
+        public let id: Int?
+        public let final: Bool?
+        public let type: MarkerType
+        public let startTimeOffset: Int
+        public let endTimeOffset: Int
+        
+        public enum MarkerType: String, Codable {
+            case credits
+            case intro
+        }
     }
 
     public struct Media: Codable, Hashable {
@@ -249,6 +263,10 @@ public extension PlexMediaItem {
 
     var roles: [Tag] {
         Role ?? []
+    }
+    
+    var markers: [Marker] {
+        self.Marker ?? []
     }
 
     var originallyReleasedAt: Date? {
