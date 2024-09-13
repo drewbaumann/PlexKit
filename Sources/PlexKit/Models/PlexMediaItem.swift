@@ -96,14 +96,14 @@ public struct PlexMediaItem: PlexMediaItemType {
         public let thumb: String?
         public let role: String?
     }
-    
+
     public struct Marker: Codable, Hashable {
         public let id: Int?
         public let final: Bool?
         public let type: MarkerType
         public let startTimeOffset: Int
         public let endTimeOffset: Int
-        
+
         public enum MarkerType: String, Codable {
             case credits
             case intro
@@ -196,6 +196,12 @@ public struct PlexMediaItem: PlexMediaItemType {
         public let selected: Bool?
         public let title: String?
         public let headerCompression: Bool?
+        public let colorPrimaries: String?
+        public let colorSpace: String?
+        public let colorRange: String?
+        public let colorTrc: String?
+        public let DOVILevel: Int?
+        public let DOVIProfile: Int?
 
         public var type: StreamType {
             .init(rawValue: streamType)
@@ -264,7 +270,7 @@ public extension PlexMediaItem {
     var roles: [Tag] {
         Role ?? []
     }
-    
+
     var markers: [Marker] {
         self.Marker ?? []
     }
